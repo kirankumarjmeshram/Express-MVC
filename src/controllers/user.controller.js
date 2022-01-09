@@ -7,7 +7,7 @@ const User = require("../models/user.model");
 
 router.get("",async (req,res)=>{
     try{
-        const  users = await User.find().lean()//.exac();
+        const  users = await User.find().lean() //.exac();
         return res.send(users)
     }catch(err){
         return res.status(500).json({message: err.message,status:"Failed"})
@@ -17,7 +17,7 @@ router.get("",async (req,res)=>{
 
 router.get("/:id",async (req,res)=>{
     try{
-        const  users = await User.findById(req.params.id).lean()//.exac();
+        const  users = await User.findById(req.params.id).lean().exac();
         return res.send(users)
     }catch(err){
         return res.status(500).json({message: err.message,status:"Failed"})
