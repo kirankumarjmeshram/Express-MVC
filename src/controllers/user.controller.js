@@ -7,7 +7,7 @@ const User = require("../models/user.model");
 
 router.get("",async (req,res)=>{
     try{
-        const  users = await User.find().lean() //.exac();
+        const  users = await User.find().lean().exec();
         return res.send(users)
     }catch(err){
         return res.status(500).json({message: err.message,status:"Failed"})
@@ -37,7 +37,7 @@ router.post("",async (req,res)=>{
     
 router.delete("/:id", async (req,res)=>{
     try{
-        const user = await User.findByIdAndDelete(req.params.id).lean()//.exac();
+        const user = await User.findByIdAndDelete(req.params.id).lean().exec();
         return res.status(200).send(user)
     }catch(err){
         return res.status(500).json({message: err.message,status:"Failed"})
@@ -46,7 +46,7 @@ router.delete("/:id", async (req,res)=>{
 
 router.patch("/:id",async (req,res)=>{
     try{
-        const user = await User.findByIdAndUpdate(req.params.id,req.body,{new:true}).lean() //.exac();
+        const user = await User.findByIdAndUpdate(req.params.id,req.body,{new:true}).lean().exec();
         
     }catch(err){
         return res.status(500).json({message: err.message,status:"Failed"});
